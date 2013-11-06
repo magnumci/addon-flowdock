@@ -14,19 +14,21 @@ module Magnum
 
         def to_s
           lines = [
-            "<strong>#{ build.title }</strong>",
-            "Commit: <a href='#{ build.commit_url }'>#{ build.message }</a>",
-            "Branch: #{ build.branch }",
-            "Author: #{ build.author }",
-            "Duration: #{ build.duration_string }",
-            "<a href='#{ build.build_url }'>View Build</a>"
+            "<ul>",
+            "<li>Commit: <a href='#{ build.commit_url }'>#{ build.message }</a>",
+            "<li>Branch: #{ build.branch }</li>",
+            "<li>Author: #{ build.author }</li>",
+            "<li>Duration: #{ build.duration_string }</li>",
+            "<li>View build: #{ build.build_url }</li>"
           ]
 
           if build.compare_url
-            lines << "<a href='#{ build.compare_url }'>View Diff</a>"
+            lines << "<li>View diff: #{ build.compare_url }</li>"
           end
 
-          lines.join("<br/>\n")
+          lines << "<ul>"
+
+          lines.join("\n")
         end
       end
     end
