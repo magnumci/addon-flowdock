@@ -26,7 +26,7 @@ module Magnum
             lines << "<li>View diff: #{ build.compare_url }</li>"
           end
 
-          lines << "<ul>"
+          lines << "</ul>"
 
           lines.join("\n")
         end
