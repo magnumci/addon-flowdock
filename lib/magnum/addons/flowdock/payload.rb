@@ -16,7 +16,7 @@ module Magnum
             content: @message.to_s,
             from:    from,
             source:  SOURCE,
-            tags:    [ @build["branch"], @build["status"], "ci" ]
+            tags:    tags,
           }
         end
 
@@ -24,6 +24,14 @@ module Magnum
 
         def from
           { address: EMAIL }
+        end
+
+        def tags
+          [
+            @build["branch"],
+            @build["status"],
+            "ci"
+          ]
         end
       end
     end
