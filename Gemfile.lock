@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    magnum-addon-flowdock (0.0.1)
+    magnum-addon-flowdock (0.1.0)
       flowdock (~> 0)
       hashr (~> 0)
 

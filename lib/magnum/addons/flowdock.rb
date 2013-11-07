@@ -26,15 +26,6 @@ module Magnum
         message = Message.new(build)
         payload = Payload.new(build, message)
 
-        notify_chat(build)
-        notify_inbox(payload)
-      end
-
-      def notify_chat(build)
-        client.push_to_chat(content: build["title"], external_user_name: @name)
-      end
-
-      def notify_inbox(payload)
         client.push_to_team_inbox(payload.to_hash)
       end
 

@@ -22,14 +22,9 @@ describe Magnum::Addons::Flowdock do
         to raise_error ArgumentError, "Hash required"
     end
 
-    it "sends chat notification" do
-      expect(addon).to receive(:notify_chat)
-      addon.run(build)
-    end
-
     it "sends team inbox notification" do
-      expect(addon).to receive(:notify_inbox)
-      addon.run(build)
+      expect(addon.run(build)).to eq true
+      
     end
   end
 end
