@@ -15,39 +15,30 @@ describe Magnum::Addons::Flowdock::Message do
 
     it "returns string" do
       expect(result).to be_a String
-      puts result
     end
 
-    it "includes build title" do
-      expect(result).to include '<strong>[PASS] slack-notify #3 (master - 6f102f22) by Dan Sosedoff</strong><br/>'
-    end
-
-    it "includes commit url" do
-      expect(result).to include "https://github.com/sosedoff/slack-notify/commit/6f102f22caac46945e16ada4f50df29a70ab2799"
-    end
-
-    it "includes commit message" do
-      expect(result).to include "Version bump: 0.1.1"
+    it "includes commit message with url" do
+      expect(result).to include "<li>Commit: <a href='https://github.com/sosedoff/slack-notify/commit/6f102f22caac46945e16ada4f50df29a70ab2799'>Version bump: 0.1.1</a>"
     end
 
     it "includes branch" do
-      expect(result).to include "Branch: master"
+      expect(result).to include "<li>Branch: master</li>"
     end
 
     it "includes author" do
-      expect(result).to include "Author: Dan Sosedoff"
+      expect(result).to include "<li>Author: Dan Sosedoff</li>"
     end
 
     it "include duration" do
-      expect(result).to include "Duration: 11s"
+      expect(result).to include "<li>Duration: 11s</li>"
     end
 
     it "includes view build url" do
-      expect(result).to include "https://magnum-ci.com/projects/201/builds/8683"
+      expect(result).to include "<li>View build: https://magnum-ci.com/projects/201/builds/8683</li>"
     end
 
     it "includes diff view url" do
-      expect(result).to include "https://github.com/sosedoff/slack-notify/compare/42f7b7cdfc4b...6f102f22caac"
+      expect(result).to include "<li>View diff: https://github.com/sosedoff/slack-notify/compare/42f7b7cdfc4b...6f102f22caac</li>"
     end
 
     it "is html formatted" do
