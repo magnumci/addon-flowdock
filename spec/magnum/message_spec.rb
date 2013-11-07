@@ -15,6 +15,7 @@ describe Magnum::Addons::Flowdock::Message do
 
     it "returns string" do
       expect(result).to be_a String
+      puts result
     end
 
     it "includes build title" do
