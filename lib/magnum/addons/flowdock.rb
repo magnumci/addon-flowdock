@@ -8,9 +8,13 @@ require "hashr"
 module Magnum
   module Addons
     class Flowdock
+      SOURCE = "Magnum CI"
+      NAME   = "magnum-ci"
+      EMAIL  = "notifications@magnum-ci.com"
+
       def initialize(options={})
         @api_token = options[:api_token]
-        @name      = options[:name] || "magnum-ci"
+        @name      = options[:name] || NAME
 
         raise Error, "API token required" if @api_token.nil?
       end
@@ -27,15 +31,9 @@ module Magnum
         payload = {
           subject: build["title"],
           content: message.to_s,
-          from: { 
-            address: "notifications@magnum-ci.com"
-          },
-          source: "Magnum CI",
-          tags: [
-            build["branch"], 
-            build["status"],
-            "ci"
-          ]
+          from:    { address: EMAIL },
+          source:  SOURCE,
+          tags:    [ build["branch"], build["status"], "ci" ]
         }
 
         client.push_to_team_inbox(payload)
