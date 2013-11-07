@@ -1,6 +1,6 @@
 # Flowdock Addon
 
-Send [Magnum CI](http://magnum-ci.com) build notifications to a [Flowdock](http://flowdock.com) room
+Send [Magnum CI](http://magnum-ci.com) build notifications to a [Flowdock](http://flowdock.com) inbox
 
 ## Usage
 
