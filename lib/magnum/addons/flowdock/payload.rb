@@ -14,10 +14,16 @@ module Magnum
           {
             subject: @build["title"],
             content: @message.to_s,
-            from:    { address: EMAIL },
+            from:    from,
             source:  SOURCE,
             tags:    [ @build["branch"], @build["status"], "ci" ]
           }
+        end
+
+        private
+
+        def from
+          { address: EMAIL }
         end
       end
     end
