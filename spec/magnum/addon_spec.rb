@@ -10,16 +10,26 @@ describe Magnum::Addons::Flowdock do
 
   describe "#run" do
     let(:addon)   { described_class.new(api_token: "token") }
-    let(:payload) { JSON.load(fixture("build.json")) }
+    let(:build) { JSON.load(fixture("build.json")) }
+
+    before do
+      ::Flowdock::Flow.any_instance.stub(:push_to_team_inbox) { true }
+      ::Flowdock::Flow.any_instance.stub(:push_to_chat) { true }
+    end
 
     it "requires hash object" do
       expect { addon.run(nil) }.
         to raise_error ArgumentError, "Hash required"
     end
 
-    it "sends notification" do
-      ::Flowdock::Flow.any_instance.stub(:push_to_team_inbox) { true }
-      expect(addon.run(payload)).to eq true
+    it "sends chat notification" do
+      expect(addon).to receive(:notify_chat)
+      addon.run(build)
+    end
+
+    it "sends team inbox notification" do
+      expect(addon).to receive(:notify_inbox)
+      addon.run(build)
     end
   end
 end
