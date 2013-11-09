@@ -25,7 +25,7 @@ describe Magnum::Addons::Flowdock::Payload do
     end
 
     it "includes from email address" do
-      expect(result[:from][:address]).to eq "notifications@magnum-ci.com"
+      expect(result[:from][:address]).to eq "build+ok@flowdock.com"
     end
 
     it "includes source name" do

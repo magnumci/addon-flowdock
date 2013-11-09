@@ -2,9 +2,6 @@ module Magnum
   module Addons
     class Flowdock
       class Payload
-        SOURCE = "Magnum CI"
-        EMAIL  = "notifications@magnum-ci.com"
-
         def initialize(build, message)
           @build   = build
           @message = message
@@ -15,7 +12,7 @@ module Magnum
             subject: @build["title"],
             content: @message.to_s,
             from:    from,
-            source:  SOURCE,
+            source:  "Magnum CI",
             tags:    tags,
           }
         end
@@ -23,7 +20,15 @@ module Magnum
         private
 
         def from
-          { address: EMAIL }
+          {
+            address: flowdock_email,
+            name: "CI"
+          }
+        end
+
+        def flowdock_email
+          status = @build["status"] == "pass" ? "ok" : @build["status"]
+          "build+#{status}@flowdock.com"
         end
 
         def tags
